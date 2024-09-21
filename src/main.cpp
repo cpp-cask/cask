@@ -86,7 +86,7 @@ void show_help()
     std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n\n";
 
     std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << "\n";
-    std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n";
+    std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n" << std::endl;
 }
 
 int main(int ac, char *av[])
