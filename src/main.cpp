@@ -5,10 +5,6 @@
 #include <iostream>
 #include <string>
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 enum class ColorId
 {
     red,
@@ -26,6 +22,7 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
 {
 
 #ifdef _WIN32
+    #include <windows.h>
 
     HANDLE h_console{GetStdHandle(STD_OUTPUT_HANDLE)};
     CONSOLE_SCREEN_BUFFER_INFO console_info;
