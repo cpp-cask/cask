@@ -234,7 +234,7 @@ jobs:
 
         execute_process(COMMAND ccache -s)
     - name: Run executable (Linux/Mac)
-      if: matrix.os != 'windows-latest'
+      if: matrix.config.os != 'windows-latest'
       run: ./build/cask
 
     - name: Run tests
