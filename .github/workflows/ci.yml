@@ -234,6 +234,15 @@ jobs:
 
         execute_process(COMMAND ccache -s)
 
+- name: Run built program
+      shell: bash
+      run: |
+        if ("${{ runner.os }}" == "Windows") {
+          ./build/cask.exe
+        } else {
+          ./build/cask
+        }
+
     - name: Run tests
       shell: cmake -P {0}
       run: |
