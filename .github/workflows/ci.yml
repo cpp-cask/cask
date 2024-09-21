@@ -234,14 +234,6 @@ jobs:
 
         execute_process(COMMAND ccache -s)
 
-    - name: Show help (Linux/Mac)
-        if: matrix.config.os != 'windows-latest'
-        run: ./build/cask
-
-    - name: Show help (Windows)
-        if: matrix.config.os == 'windows-latest'
-        run: .\build\Debug\cask.exe
-
     - name: Run tests
       shell: cmake -P {0}
       run: |
