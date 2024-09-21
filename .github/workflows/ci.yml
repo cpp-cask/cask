@@ -233,6 +233,7 @@ jobs:
         set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
 
         execute_process(COMMAND ccache -s)
+
     - name: Run executable (Linux/Mac)
       if: matrix.config.os != 'windows-latest'
       run: ./build/cask
