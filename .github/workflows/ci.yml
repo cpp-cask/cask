@@ -234,7 +234,7 @@ jobs:
 
         execute_process(COMMAND ccache -s)
 
-- name: Run built program
+    - name: Run built program
       shell: bash
       run: |
         if ("${{ runner.os }}" == "Windows") {
