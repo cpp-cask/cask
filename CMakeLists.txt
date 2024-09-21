@@ -13,4 +13,4 @@ add_executable(cask src/main.cpp)
 install(TARGETS cask)
 
 enable_testing()
-add_test(NAME cask COMMAND cask)
+add_test(NAME cask COMMAND cask help)
