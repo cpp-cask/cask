@@ -38,7 +38,7 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
     WORD color_code{saved_attributes};
 
     switch (color_id) {
-        case ColorId::red    color_code = FOREGROUND_RED; break;
+        case ColorId::red:   color_code = FOREGROUND_RED; break;
         case ColorId::green: color_code = FOREGROUND_GREEN; break;
         case ColorId::cyan:  color_code = FOREGROUND_GREEN | FOREGROUND_BLUE; break;
     }
