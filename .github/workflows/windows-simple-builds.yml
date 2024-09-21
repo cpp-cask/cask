@@ -26,3 +26,6 @@ jobs:
       # Build the project
       - name: Build with CMake
         run: cmake --build ${{runner.workspace}}/build
+
+      - name: Run executable (Windows)
+        run: ${{runner.workspace}}\Debug\cask.exe
