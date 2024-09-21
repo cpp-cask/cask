@@ -21,5 +21,4 @@ jobs:
           cmake -S $Env:GITHUB_WORKSPACE               `
                 -B ${{runner.workspace}}/build         `
                 -DCMAKE_CXX_STANDARD=${{matrix.std}}   `
-                -A ${{matrix.platform}}                `
-                --preset all-tests
+                -A ${{matrix.platform}}
