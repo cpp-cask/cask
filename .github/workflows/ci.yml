@@ -233,15 +233,9 @@ jobs:
         set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
 
         execute_process(COMMAND ccache -s)
-
-    - name: Run built program
-      shell: bash
-      run: |
-        if ("${{ runner.os }}" == "Windows") {
-          ./build/cask.exe
-        } else {
-          ./build/cask
-        }
+    - name: Run executable (Linux/Mac)
+      if: matrix.os != 'windows-latest'
+      run: ./build/cask
 
     - name: Run tests
       shell: cmake -P {0}
