@@ -239,7 +239,7 @@ jobs:
       run: ./build/cask help
 
     - name: Show help (Windows)
-      if: matrix.os == 'windows-latest'
+      if: matrix.config.os == 'windows-latest'
       run: .\build\Debug\cask.exe
 
     - name: Run tests
