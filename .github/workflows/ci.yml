@@ -240,7 +240,7 @@ jobs:
 
     - name: Show help (Windows)
       if: matrix.config.os == 'windows-latest'
-      run: .\build\cask.exe
+      run: .\build\cask.exe help
 
     - name: Run tests
       shell: cmake -P {0}
