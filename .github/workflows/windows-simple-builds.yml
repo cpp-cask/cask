@@ -23,7 +23,6 @@ jobs:
                 -DCMAKE_CXX_STANDARD=${{matrix.std}}   `
                 -A ${{matrix.platform}}
 
-      # Build the project
       - name: Build with CMake
         run: cmake --build ${{runner.workspace}}/build
 
