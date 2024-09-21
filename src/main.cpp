@@ -97,7 +97,7 @@ int main(int ac, char *av[])
         return 1;
     }
 
-    std::cout << "C++'s package manager\n\n";
+    show_help();
 
     return 0;
 }
