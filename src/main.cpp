@@ -79,23 +79,23 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
 
 // //////
 
-// void show_help()
-// {
-//     std::cout << "C++'s package manager\n\n";
+void show_help()
+{
+    std::cout << "C++'s package manager\n\n";
 
-//     std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n\n";
+    std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n\n";
 
-//     std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << "\n";
-//     std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n";
-// }
+    std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << "\n";
+    std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n";
+}
 
 int main(int ac, char *av[])
 {
-    // if (ac < 2)
-    // {
-    //     show_help();
-    //     return 1;
-    // }
+    if (ac < 2)
+    {
+        show_help();
+        return 1;
+    }
 
     std::cout << "C++'s package manager\n\n";
 
