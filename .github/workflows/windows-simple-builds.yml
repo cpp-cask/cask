@@ -22,3 +22,10 @@ jobs:
                 -B ${{runner.workspace}}/build         `
                 -DCMAKE_CXX_STANDARD=${{matrix.std}}   `
                 -A ${{matrix.platform}}
+
+      # Build the project
+      - name: Build with CMake
+        run: cmake --build build
+
+      - name: Run executable (Windows)
+        run: .\build\Debug\cask.exe
