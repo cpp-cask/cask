@@ -28,4 +28,4 @@ jobs:
         run: cmake --build ${{runner.workspace}}/build
 
       - name: Run executable (Windows)
-        run: ${{runner.workspace}}\Debug\cask.exe
+        run: ${{runner.workspace}}\build\Debug\cask.exe
