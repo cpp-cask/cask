@@ -236,7 +236,7 @@ jobs:
 
     - name: Run executable (Linux/Mac)
       if: matrix.config.os != 'windows-latest'
-      run: ./build/cask
+      run: ./build/cask help
 
     - name: Run tests
       shell: cmake -P {0}
