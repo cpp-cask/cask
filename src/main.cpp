@@ -43,6 +43,7 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
         case ColorId::cyan:  color_code = FOREGROUND_GREEN | FOREGROUND_BLUE; break;
     }
 
+
     SetConsoleTextAttribute(h_console, color_code);
 
     std::cout << line;
