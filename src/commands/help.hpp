@@ -6,17 +6,15 @@
 // SPDX-License-Identifier: BSL-1.0
 
 //
-// This file implements the Cask functionality.
+// This file implements the help command.
 
-#include <commands/help.hpp>
+#ifndef SRC_COMMANDS_HELP_HPP_
+#define SRC_COMMANDS_HELP_HPP_
 
-int main(int ac, char *av[]) {
-  if (ac < 2) {
-    help::run();
-    return 1;
-  }
+namespace help {
 
-  help::run();
+void run();
 
-  return 0;
-}
+}  // namespace help
+
+#endif  // SRC_COMMANDS_HELP_HPP_
