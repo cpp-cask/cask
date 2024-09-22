@@ -35,12 +35,12 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
     GetConsoleScreenBufferInfo(h_console, &console_info);
     saved_attributes = console_info.wAttributes;
 
-    int color_code{7};
+    WORD color_code{saved_attributes};
 
     switch (color_id) {
-        case ColorId::red:   color_code = 4; break;
-        case ColorId::green: color_code = 2; break;
-        case ColorId::cyan:  color_code = 3; break;
+        case ColorId::red:   color_code = FOREGROUND_RED; break;
+        case ColorId::green: color_code = FOREGROUND_GREEN; break;
+        case ColorId::cyan:  color_code = FOREGROUND_GREEN | FOREGROUND_BLUE; break;
     }
 
     SetConsoleTextAttribute(h_console, color_code);
@@ -81,11 +81,11 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
 
 void show_help()
 {
-    std::cout << "C++'s package manager\n\n";
+    std::cout << "C++'s package manager\n" << std::endl;
 
-    std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n\n";
+    std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n" << std::endl;
 
-    std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << "\n";
+    std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << std::endl;
     std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n" << std::endl;
 }
 
