@@ -81,11 +81,11 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
 
 void show_help()
 {
-    std::cout << "C++'s package manager\n" << std::endl;
+    std::cout << "C++'s package manager\n\n";
 
-    std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n" << std::endl;
+    std::cout << color(ColorId::green, "Usage:", ColorFont::bold) << color(ColorId::cyan, " cask [COMMAND]", ColorFont::bold) << "\n\n";
 
-    std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << std::endl;
+    std::cout << color(ColorId::green, "Commands:", ColorFont::bold) << "\n";
     std::cout << color(ColorId::cyan, "    new", ColorFont::bold) << "  Create a new cask package\n" << std::endl;
 }
 
