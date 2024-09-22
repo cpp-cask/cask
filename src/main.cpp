@@ -9,14 +9,29 @@
 // This file implements the Cask functionality.
 
 #include <commands/help.hpp>
+#include <utils/opts.hpp>
 
-int main(int ac, char *av[]) {
+int main(int ac, char* av[]) {
   if (ac < 2) {
-    help::run();
+    help::help();
     return 1;
   }
 
-  help::run();
+  const auto command{opts::command::from_str(av[1])};
+
+  if (!command.has_value()) {
+    help::unknown_command(av[1]);
+    return 1;
+  }
+
+  switch (command.value()) {
+    case opts::Command::Help:
+      help::help();
+      break;
+    case opts::Command::List:
+      help::list();
+      break;
+  }
 
   return 0;
 }

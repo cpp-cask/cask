@@ -11,9 +11,13 @@
 #ifndef SRC_COMMANDS_HELP_HPP_
 #define SRC_COMMANDS_HELP_HPP_
 
+#include <string_view>
+
 namespace help {
 
-void run();
+void help();
+void list();
+void unknown_command(std::string_view command);
 
 }  // namespace help
 
