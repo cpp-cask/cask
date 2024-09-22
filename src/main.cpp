@@ -35,14 +35,13 @@ std::string color(ColorId color_id, const std::string& line, ColorFont font = Co
     GetConsoleScreenBufferInfo(h_console, &console_info);
     saved_attributes = console_info.wAttributes;
 
-    WORD color_code{saved_attributes};
+    int color_code{7};
 
     switch (color_id) {
-        case ColorId::red:   color_code = FOREGROUND_RED; break;
-        case ColorId::green: color_code = FOREGROUND_GREEN; break;
-        case ColorId::cyan:  color_code = FOREGROUND_GREEN | FOREGROUND_BLUE; break;
+        case ColorId::red:   color_code = 4; break;
+        case ColorId::green: color_code = 2; break;
+        case ColorId::cyan:  color_code = 3; break;
     }
-
 
     SetConsoleTextAttribute(h_console, color_code);
 
