@@ -25,12 +25,23 @@ int main(int ac, char* av[]) {
   }
 
   switch (command.value()) {
-    case opts::Command::Help:
+    case opts::Command::Help: {
       help::help();
       break;
-    case opts::Command::List:
+    }
+    case opts::Command::List: {
       help::list();
       break;
+    }
+    case opts::Command::New: {
+      if (ac < 3) {
+        help::new_missing_path();
+        return 1;
+      }
+
+      // help::help();
+      break;
+    }
   }
 
   return 0;

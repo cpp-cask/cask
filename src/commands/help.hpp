@@ -18,6 +18,7 @@ namespace help {
 void help();
 void list();
 void unknown_command(std::string_view command);
+void new_missing_path();
 
 }  // namespace help
 

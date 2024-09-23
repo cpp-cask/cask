@@ -32,16 +32,31 @@ void help() {
 
 void list() {
   std::cout << "Installed Commands:\n";
-  std::cout << "    help                 Displays help for a cask subcommand"
+  std::cout << "    help                 Displays help for a cask subcommand\n";
+  std::cout << "    new                  Create a new cask package at <path>"
             << std::endl;
 }
 
 void unknown_command(std::string_view command) {
-  fmt::print(fg(red) | fmt::emphasis::bold, "error");
-  std::cout << ": no such command: `" << command << "`\n\n";
+  fmt::print(fg(red) | fmt::emphasis::bold, "error:");
+  std::cout << " no such command: `" << command << "`\n\n";
   std::cout << "        Did you mean `help`?\n\n";
   std::cout << "        View all installed commands with `cask --list`"
             << std::endl;
+}
+
+void new_missing_path() {
+  fmt::print(fg(red) | fmt::emphasis::bold, "error:");
+  std::cout << " the following required arguments were not provided:\n";
+  fmt::print(fg(blue) | fmt::emphasis::bold, "  <path>\n\n");
+
+  fmt::print(fg(green) | fmt::emphasis::bold, "Usage: ");
+  fmt::print(fg(blue) | fmt::emphasis::bold, "cask new");
+  fmt::print(fg(blue), " <path>\n\n");
+
+  std::cout << "For more information, try '";
+  fmt::print(fg(blue) | fmt::emphasis::bold, "--help");
+  std::cout << "'." << std::endl;
 }
 
 }  // namespace help

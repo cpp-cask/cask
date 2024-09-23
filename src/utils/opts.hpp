@@ -16,7 +16,7 @@
 
 namespace opts {
 
-enum class Command { Help, List };
+enum class Command { Help, List, New };
 
 namespace command {
 std::optional<Command> from_str(const std::string& str);
