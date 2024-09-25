@@ -22,7 +22,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
 
 # link dependencies
-target_link_libraries(cask fmt::fmt)
+target_link_libraries(cask fmt::fmt stdc++fs)
 
 # Install
 install(TARGETS cask)

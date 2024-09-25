@@ -9,6 +9,7 @@
 // This file implements the Cask functionality.
 
 #include <commands/help.hpp>
+#include <commands/new.hpp>
 #include <utils/opts.hpp>
 
 int main(int ac, char* av[]) {
@@ -39,7 +40,7 @@ int main(int ac, char* av[]) {
         return 1;
       }
 
-      // help::help();
+      new_cmd::run(av[2]);
       break;
     }
   }
