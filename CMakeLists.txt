@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Recursively gather all source files from src folder and its subdirectories
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
+list(FILTER SRC_FILES EXCLUDE REGEX ".test.")
 
 # add the executable
 add_executable(cask ${SRC_FILES})
@@ -20,6 +21,7 @@ target_include_directories(cask PRIVATE ${CMAKE_SOURCE_DIR}/src)
 include(cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
+CPMAddPackage("gh:catchorg/Catch2@3.7.1")
 
 # link dependencies
 target_link_libraries(cask fmt::fmt)
@@ -34,5 +36,14 @@ endif()
 install(TARGETS cask)
 
 # Test
+# Recursively gather all test files from src folder and its subdirectories
+file(GLOB_RECURSE TEST_FILES "src/*.test.cpp")
+
+# add the executable
+add_executable(cask-test ${TEST_FILES})
+
+target_link_libraries(cask-test Catch2::Catch2WithMain)
+
 enable_testing()
 add_test(NAME cask COMMAND cask help)
+add_test(NAME cask-test COMMAND cask-test)
