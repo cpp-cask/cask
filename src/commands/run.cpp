@@ -11,6 +11,7 @@
 #include <fmt/color.h>
 
 #include <commands/run.hpp>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string_view>
@@ -66,6 +67,8 @@ void run(std::string_view project_name) {
   cmake_file << "#add dependencies\n";
 
   cmake_file.close();
+
+  std::system("cmake -Starget/debug -Btarget/debug/build");
 }
 
 }  // namespace run
