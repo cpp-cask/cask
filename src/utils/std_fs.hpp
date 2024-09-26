@@ -5,18 +5,14 @@
 
 // SPDX-License-Identifier: BSL-1.0
 
-//
-// This file implements the help command.
-
 #pragma once
 
-#include <string_view>
+#include <utils/macro_scope.hpp>
 
-namespace help {
-
-void help();
-void list();
-void unknown_command(std::string_view command);
-void new_missing_path();
-
-}  // namespace help
+#if CASK_HAS_EXPERIMENTAL_FILESYSTEM
+#include <experimental/filesystem>
+namespace std_fs = std::experimental::filesystem;
+#elif CASK_HAS_FILESYSTEM
+#include <filesystem>
+namespace std_fs = std::filesystem;
+#endif

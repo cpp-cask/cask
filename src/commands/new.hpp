@@ -8,8 +8,7 @@
 //
 // This file implements the help command.
 
-#ifndef SRC_COMMANDS_NEW_HPP_
-#define SRC_COMMANDS_NEW_HPP_
+#pragma once
 
 #include <string_view>
 
@@ -18,5 +17,3 @@ namespace new_cmd {
 void run(std::string_view project_name);
 
 }  // namespace new_cmd
-
-#endif  // SRC_COMMANDS_NEW_HPP_
