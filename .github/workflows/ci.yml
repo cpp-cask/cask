@@ -238,9 +238,17 @@ jobs:
       if: matrix.config.os != 'windows-latest'
       run: ./build/cask help
 
+    - name: New Project (Linux/Mac)
+      if: matrix.config.os != 'windows-latest'
+      run: ./build/cask new test_project
+
     - name: Show help (Windows)
       if: matrix.config.os == 'windows-latest'
       run: .\build\cask.exe help
+
+    - name: New Project (Windows)
+      if: matrix.config.os == 'windows-latest'
+      run: .\build\cask.exe new test_project
 
     - name: Run tests
       shell: cmake -P {0}

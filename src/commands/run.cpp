@@ -69,6 +69,7 @@ void run(std::string_view project_name) {
   cmake_file.close();
 
   std::system("cmake -Starget/debug -Btarget/debug/build");
+  std::system("cmake --build target/debug/build");
 }
 
 }  // namespace run
