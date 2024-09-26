@@ -37,12 +37,21 @@ install(TARGETS cask)
 
 # Test
 # Recursively gather all test files from src folder and its subdirectories
-file(GLOB_RECURSE TEST_FILES "src/*.test.cpp")
+file(GLOB_RECURSE TEST_FILES_INPLACE "src/*.test.cpp")
+file(GLOB_RECURSE TEST_FILES_FOLDER "tests/*.cpp")
 
 # add the executable
-add_executable(cask-test ${TEST_FILES})
+add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER})
+
+target_include_directories(cask-test PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 target_link_libraries(cask-test Catch2::Catch2WithMain)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
+    # fix for https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90050
+    target_link_libraries(cask-test stdc++fs)    
+endif()
 
 enable_testing()
 add_test(NAME cask COMMAND cask help)

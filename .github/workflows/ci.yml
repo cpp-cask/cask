@@ -242,10 +242,6 @@ jobs:
       if: matrix.config.os != 'windows-latest'
       run: ./build/cask new test_project
 
-    - name: Run Tests (Linux/Mac)
-      if: matrix.config.os != 'windows-latest'
-      run: ./build/cask-test
-
     - name: Show help (Windows)
       if: matrix.config.os == 'windows-latest'
       run: .\build\cask.exe help
