@@ -246,7 +246,7 @@ jobs:
       if: matrix.config.os != 'windows-latest'
       run: |
           cd test_project
-          ./build/cask run
+          ../build/cask run
 
     - name: Show help (Windows)
       if: matrix.config.os == 'windows-latest'
