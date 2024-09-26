@@ -10,9 +10,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Recursively gather all source files from src folder and its subdirectories
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
 list(FILTER SRC_FILES EXCLUDE REGEX ".test.")
+list(FILTER SRC_FILES EXCLUDE REGEX "main.cpp")
 
 # add the executable
-add_executable(cask ${SRC_FILES})
+add_executable(cask ${SRC_FILES} src/main.cpp)
 
 # Add the src folder as an include directory so headers can be found
 target_include_directories(cask PRIVATE ${CMAKE_SOURCE_DIR}/src)
@@ -41,11 +42,11 @@ file(GLOB_RECURSE TEST_FILES_INPLACE "src/*.test.cpp")
 file(GLOB_RECURSE TEST_FILES_FOLDER "tests/*.cpp")
 
 # add the executable
-add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER})
+add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER} ${SRC_FILES})
 
 target_include_directories(cask-test PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
-target_link_libraries(cask-test Catch2::Catch2WithMain)
+target_link_libraries(cask-test fmt::fmt Catch2::Catch2WithMain)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
     AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)

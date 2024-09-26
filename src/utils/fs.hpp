@@ -11,8 +11,8 @@
 
 #if CASK_HAS_EXPERIMENTAL_FILESYSTEM
 #include <experimental/filesystem>
-namespace std_fs = std::experimental::filesystem;
+namespace fs = std::experimental::filesystem;
 #elif CASK_HAS_FILESYSTEM
 #include <filesystem>
-namespace std_fs = std::filesystem;
+namespace fs = std::filesystem;
 #endif

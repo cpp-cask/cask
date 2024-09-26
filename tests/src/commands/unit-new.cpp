@@ -6,15 +6,18 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include <catch2/catch_test_macros.hpp>
-#include <utils/std_fs.hpp>
+#include <commands/new.hpp>
+#include <utils/fs.hpp>
 
-unsigned int Factorial(unsigned int number) {
-  return number <= 1 ? number : Factorial(number - 1) * number;
-}
+TEST_CASE("New", "NewProject") {
+  const auto path{fs::temp_directory_path()};
 
-TEST_CASE("Factorials are computed", "[factorial]") {
-  REQUIRE(Factorial(1) == 1);
-  REQUIRE(Factorial(2) == 2);
-  REQUIRE(Factorial(3) == 6);
-  REQUIRE(Factorial(10) == 3628800);
+  fs::current_path(path);
+
+  new_cmd::run("sandbox");
+
+  REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
+  REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
+
+  fs::remove_all("sandbox");
 }

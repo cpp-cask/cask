@@ -14,24 +14,24 @@
 #include <fstream>
 #include <iostream>
 #include <string_view>
-#include <utils/std_fs.hpp>
+#include <utils/fs.hpp>
 
 namespace new_cmd {
 
 void run(std::string_view project_name) {
-  if (std_fs::is_directory(project_name)) {
+  if (fs::is_directory(project_name)) {
     fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
-    std::cout << " destination " << std_fs::absolute(project_name)
+    std::cout << " destination " << fs::absolute(project_name)
               << " already exists\n\n";
     std::cout << "Use `cask init` to initialize the directory" << std::endl;
 
     return;
   }
 
-  std_fs::path path{project_name};
+  fs::path path{project_name};
 
-  std_fs::create_directories(path);
-  std_fs::create_directories(path / "src");
+  fs::create_directories(path);
+  fs::create_directories(path / "src");
 
   std::ofstream main_file(path / "src" / "main.cpp");
 
