@@ -22,7 +22,13 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
 
 # link dependencies
-target_link_libraries(cask fmt::fmt stdc++fs)
+target_link_libraries(cask fmt::fmt)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
+    # fix for https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90050
+    target_link_libraries(cask stdc++fs)    
+endif()
 
 # Install
 install(TARGETS cask)
