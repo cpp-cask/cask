@@ -11,35 +11,34 @@
 #include <fmt/color.h>
 
 #include <commands/run.hpp>
-#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <string_view>
-
-namespace fs = std::experimental::filesystem;
+#include <utils/std_fs.hpp>
 
 namespace run {
 
 void run(std::string_view project_name) {
-  fs::path path{project_name};
+  std_fs::path path{project_name};
 
-  if (!fs::exists(path / "Cask.toml")) {
+  if (!std_fs::exists(path / "Cask.toml")) {
     fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
-    std::cout << "could not find `Cask.toml` in " << fs::absolute(project_name)
-              << " or any parent directory" << std::endl;
+    std::cout << "could not find `Cask.toml` in "
+              << std_fs::absolute(project_name) << " or any parent directory"
+              << std::endl;
     return;
   }
 
-  if (!fs::is_directory(path / "target")) {
-    fs::create_directories(path / "target");
+  if (!std_fs::is_directory(path / "target")) {
+    std_fs::create_directories(path / "target");
   }
 
-  if (!fs::is_directory(path / "target" / "debug")) {
-    fs::create_directories(path / "target" / "debug");
+  if (!std_fs::is_directory(path / "target" / "debug")) {
+    std_fs::create_directories(path / "target" / "debug");
   }
 
-  if (!fs::is_directory(path / "target" / "debug" / "build")) {
-    fs::create_directories(path / "target" / "debug" / "build");
+  if (!std_fs::is_directory(path / "target" / "debug" / "build")) {
+    std_fs::create_directories(path / "target" / "debug" / "build");
   }
 
   std::ofstream cmake_file(path / "target" / "debug" / "CMakeLists.txt");
