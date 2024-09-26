@@ -10,6 +10,7 @@
 
 #include <commands/help.hpp>
 #include <commands/new.hpp>
+#include <commands/run.hpp>
 #include <utils/opts.hpp>
 
 int main(int ac, char* av[]) {
@@ -41,6 +42,10 @@ int main(int ac, char* av[]) {
       }
 
       new_cmd::run(av[2]);
+      break;
+    }
+    case opts::Command::Run: {
+      run::run(av[2]);
       break;
     }
   }

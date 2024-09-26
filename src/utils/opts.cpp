@@ -17,7 +17,8 @@ std::optional<Command> from_str(const std::string& str) {
       {"--help", Command::Help},
       {"help", Command::Help},
       {"--list", Command::List},
-      {"new", Command::New}};
+      {"new", Command::New},
+      {"run", Command::Run}};
 
   if (auto it{command_map.find(str)}; it != command_map.end()) {
     return it->second;

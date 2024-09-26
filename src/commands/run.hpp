@@ -6,19 +6,14 @@
 // SPDX-License-Identifier: BSL-1.0
 
 //
-// This file implements a lightweight options parser.
+// This file implements the help command.
 
 #pragma once
 
-#include <optional>
-#include <string>
+#include <string_view>
 
-namespace opts {
+namespace run {
 
-enum class Command { Help, List, New, Run };
+void run(std::string_view project_name);
 
-namespace command {
-std::optional<Command> from_str(const std::string& str);
-}
-
-}  // namespace opts
+}  // namespace run
