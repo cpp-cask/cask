@@ -19,5 +19,5 @@ TEST_CASE("New", "NewProject") {
   REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
   REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
 
-  fs::remove_all("sandbox");
+  fs::remove_all(path / "sandbox");
 }
