@@ -28,7 +28,7 @@ TEST_CASE("Run", "RunProject") {
     fs::current_path(path / "sandbox");
     run::run("sandbox");
 
-    fs::current_path(path / "sandbox" / "target");
+    fs::current_path(path / "sandbox" / "target" / "debug");
     
     REQUIRE(std::system("ls -la") == 2);
     
