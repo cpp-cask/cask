@@ -26,6 +26,12 @@ TEST_CASE("Run", "RunProject") {
 
   run::run("sandbox-run");
 
+  std::filesystem::permissions(path / "sandbox-run",
+                               std::filesystem::perms::owner_write |
+                                   std::filesystem::perms::group_write |
+                                   std::filesystem::perms::others_write,
+                               std::filesystem::perm_options::add);
+
   fs::remove_all(path / "sandbox-run");
 
   // std::uintmax_t n{fs::remove_all(tmp / "abcdef")};
