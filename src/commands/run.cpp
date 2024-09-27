@@ -88,6 +88,7 @@ void run(std::string_view project_name) {
   std::cout << "LS 1:" << std::endl;
   
   assert(std::system("pwd") == 2);
+  
 
   std::cout << "----" << std::endl;
 
