@@ -13,10 +13,12 @@
 #include <cassert>
 #include <commands/run.hpp>
 #include <cstdlib>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string_view>
-#include <utils/fs.hpp>
+
+namespace fs = std::filesystem;
 
 namespace run {
 

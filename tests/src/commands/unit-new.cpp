@@ -7,7 +7,9 @@
 
 #include <catch2/catch_test_macros.hpp>
 #include <commands/new.hpp>
-#include <utils/fs.hpp>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 TEST_CASE("New", "NewProject") {
   const auto path{fs::temp_directory_path()};

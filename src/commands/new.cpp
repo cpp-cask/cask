@@ -11,10 +11,12 @@
 #include <fmt/color.h>
 
 #include <commands/new.hpp>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string_view>
-#include <utils/fs.hpp>
+
+namespace fs = std::filesystem;
 
 namespace new_cmd {
 

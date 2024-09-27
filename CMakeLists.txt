@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Cask VERSION 0.1)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Recursively gather all source files from src folder and its subdirectories
@@ -27,12 +27,6 @@ CPMAddPackage("gh:catchorg/Catch2@3.7.1")
 # link dependencies
 target_link_libraries(cask fmt::fmt)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
-    AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
-    # fix for https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90050
-    target_link_libraries(cask stdc++fs)    
-endif()
-
 # Install
 install(TARGETS cask)
 
@@ -47,12 +41,6 @@ add_executable(cask-test ${TEST_FILES_INPLACE} ${TEST_FILES_FOLDER} ${SRC_FILES}
 target_include_directories(cask-test PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 target_link_libraries(cask-test fmt::fmt Catch2::Catch2WithMain)
-
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
-    AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
-    # fix for https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90050
-    target_link_libraries(cask-test stdc++fs)    
-endif()
 
 enable_testing()
 add_test(NAME cask COMMAND cask help)
