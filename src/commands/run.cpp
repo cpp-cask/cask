@@ -89,6 +89,8 @@ void run(std::string_view project_name) {
   
   assert(std::system("ls -la") == 2);
 
+  std::cout << "----" << std::endl;
+
   // assert(std::system("cmake --build target/debug/build") == 0);
 
   //std::system(
