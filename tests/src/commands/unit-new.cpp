@@ -21,11 +21,5 @@ TEST_CASE("New", "NewProject") {
   REQUIRE(fs::exists(path / "sandbox-new" / "Cask.toml"));
   REQUIRE(fs::exists(path / "sandbox-new" / "src" / "main.cpp"));
 
-  std::filesystem::permissions(path / "sandbox-new",
-                               std::filesystem::perms::owner_write |
-                                   std::filesystem::perms::group_write |
-                                   std::filesystem::perms::others_write,
-                               std::filesystem::perm_options::add);
-
   fs::remove_all(path / "sandbox-new");
 }
