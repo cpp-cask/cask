@@ -79,11 +79,12 @@ void run(std::string_view project_name) {
 
   command = "cmake --build ";
   command += (path / "target" / "debug" / "build").string();
-  
+
   assert(std::system(command.c_str()) == 0);
 
-  //std::system(
-  //    (std::string("target/debug/build/") + std::string(project_name)).c_str());
+  command = (path / "target" / "debug" / "build" / project_name).string();
+
+  std::system(command.c_str());
 }
 
 }  // namespace run
