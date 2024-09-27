@@ -28,11 +28,11 @@ TEST_CASE("Run", "RunProject") {
     fs::current_path(path / "sandbox");
     run::run("sandbox");
 
+    REQUIRE(std::system("ls -la") == 2);
+    
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build"));
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
                        "Makefile"));
-
-    REQUIRE(std::system("ls -la") == 2);
   }
 
   SECTION("CleanUp") { fs::remove_all(path / "sandbox"); }
