@@ -31,8 +31,6 @@ TEST_CASE("Run", "RunProject") {
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build"));
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
                        "Makefile"));
-
-    REQUIRE(std::system("ls -la") == 2);
   }
 
   SECTION("CleanUp") { fs::remove_all(path / "sandbox"); }

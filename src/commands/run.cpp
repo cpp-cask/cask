@@ -70,7 +70,21 @@ void run(std::string_view project_name) {
 
   cmake_file.close();
 
-  assert(std::system("cmake -Starget/debug -Btarget/debug/build") == 0);
+  // fs::current_path(path / "target" / "debug" / "build");
+
+  std::cout << fs::current_path() << std::endl;
+
+  std::string command{"cmake -S"};
+  command += (path / "target" / "debug").string();
+  command += " -B";
+  command += (path / "target" / "debug" / "build").string();
+
+  assert(std::system(command.c_str()) == 0);
+
+  fs::current_path(path / "target" / "debug" / "build");
+
+  assert(std::system("ls -la") == 2);
+
   assert(std::system("cmake --build target/debug/build") == 0);
 
   std::system(
