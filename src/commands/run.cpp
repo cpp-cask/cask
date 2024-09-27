@@ -51,7 +51,7 @@ void run(std::string_view project_name) {
   cmake_file << "project(" << project_name << " VERSION 0.1)\n\n";
 
   cmake_file << "# specify the C++ standard\n";
-  cmake_file << "set(CMAKE_CXX_STANDARD 17)\n";
+  cmake_file << "set(CMAKE_CXX_STANDARD 20)\n";
   cmake_file << "set(CMAKE_CXX_STANDARD_REQUIRED True)\n\n";
 
   cmake_file << "# Recursively gather all source files from src folder and its "

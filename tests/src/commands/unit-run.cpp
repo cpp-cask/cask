@@ -17,12 +17,20 @@ TEST_CASE("Run", "RunProject") {
 
   fs::current_path(path);
 
-  new_cmd::run("sandbox");
+  SECTION("New") {
+    new_cmd::run("sandbox");
 
-  REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
-  REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
+    REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
+    REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
+  }
 
-  run::run("sandbox");
+  SECTION("Run") {
+    fs::current_path(path / "sandbox");
+    run::run("sandbox");
 
-  fs::remove_all(path / "sandbox");
+    REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
+                       "sandbox"));
+  }
+
+  SECTION("CleanUp") { fs::remove_all(path / "sandbox"); }
 }
