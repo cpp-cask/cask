@@ -23,7 +23,7 @@ namespace fs = std::filesystem;
 namespace run {
 
 void run(std::string_view project_name) {
-  // fs::path path{fs::current_path()};
+  fs::path path{fs::current_path()};
 
   // if (!fs::exists(path / "Cask.toml")) {
   //   fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
