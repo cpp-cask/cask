@@ -7,6 +7,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 #include <commands/new.hpp>
+#include <commands/run.hpp>
 #include <filesystem>
 
 namespace fs = std::filesystem;
@@ -16,10 +17,12 @@ TEST_CASE("Run", "RunProject") {
 
   fs::current_path(path);
 
-  new_cmd::run("sandbox-new");
+  new_cmd::run("sandbox");
 
-  REQUIRE(fs::exists(path / "sandbox-new" / "Cask.toml"));
-  REQUIRE(fs::exists(path / "sandbox-new" / "src" / "main.cpp"));
+  REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
+  REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
 
-  fs::remove_all(path / "sandbox-new");
+  run::run("sandbox");
+
+  fs::remove_all(path / "sandbox");
 }
