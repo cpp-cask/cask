@@ -17,16 +17,16 @@ TEST_CASE("Run", "RunProject") {
 
   fs::current_path(path);
 
-  new_cmd::run("sandbox");
+  new_cmd::run("sandbox-run");
 
-  REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
-  REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));
+  REQUIRE(fs::exists(path / "sandbox-run" / "Cask.toml"));
+  REQUIRE(fs::exists(path / "sandbox-run" / "src" / "main.cpp"));
 
-  fs::current_path(path / "sandbox");
+  fs::current_path(path / "sandbox-run");
 
-  run::run("sandbox");
+  run::run("sandbox-run");
 
-  fs::remove_all(path / "sandbox");
+  fs::remove_all(path / "sandbox-run");
 
   // std::uintmax_t n{fs::remove_all(tmp / "abcdef")};
   //   std::cout << "Deleted " << n << " files or directories\n";
