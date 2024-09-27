@@ -85,9 +85,12 @@ void run(std::string_view project_name) {
 
   // fs::current_path(path / "target" / "debug" / "build");
 
-  std::cout << "LS 1:" << std::endl;
+  std::cout << "RUN PWD:" << std::endl;
+
+  command = "ls -la ";
+  command += (path / "target" / "debug" / "build").string();
   
-  assert(std::system("pwd") == 2);
+  assert(std::system("ls -la ") == 2);
   
 
   std::cout << "----" << std::endl;
