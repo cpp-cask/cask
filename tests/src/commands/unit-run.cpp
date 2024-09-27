@@ -28,6 +28,10 @@ TEST_CASE("Run", "RunProject") {
     fs::current_path(path / "sandbox");
     run::run("sandbox");
 
+    fs::current_path(path / "sandbox" / "target" / "debug" / "build");
+    
+    REQUIRE(std::system("ls -la") == 2);
+    
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build"));
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
                        "Makefile"));
