@@ -70,7 +70,7 @@ void run(std::string_view project_name) {
 
   cmake_file.close();
 
-  // assert(std::system("cmake -Starget/debug -Btarget/debug/build") == 0);
+  assert(std::system("cmake -Starget/debug -Btarget/debug/build") == 0);
   // assert(std::system("cmake --build target/debug/build") == 0);
 }
 
