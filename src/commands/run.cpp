@@ -72,16 +72,18 @@ void run(std::string_view project_name) {
 
   // fs::current_path(path / "target" / "debug" / "build");
 
-  std::cout << fs::current_path() << std::endl;
+  std::cout << "CURRENT_PATH:" << fs::current_path() << std::endl;
 
   std::string command{"cmake -S"};
   command += (path / "target" / "debug").string();
   command += " -B";
   command += (path / "target" / "debug" / "build").string();
 
+  std::cout << "command:" << command << std::endl;
+
   assert(std::system(command.c_str()) == 0);
 
-  fs::current_path(path / "target" / "debug" / "build");
+  // fs::current_path(path / "target" / "debug" / "build");
 
   assert(std::system("ls -la") == 2);
 
