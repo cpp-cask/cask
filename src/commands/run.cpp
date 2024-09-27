@@ -25,17 +25,16 @@ namespace run {
 void run(std::string_view project_name) {
   fs::path path{fs::current_path()};
 
-  // if (!fs::exists(path / "Cask.toml")) {
-  //   fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
-  //   std::cout << "could not find `Cask.toml` in " <<
-  //   fs::absolute(project_name)
-  //             << " or any parent directory" << std::endl;
-  //   return;
-  // }
+  if (!fs::exists(path / "Cask.toml")) {
+    fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
+    std::cout << "could not find `Cask.toml` in " << fs::absolute(project_name)
+              << " or any parent directory" << std::endl;
+    return;
+  }
 
-  // if (!fs::is_directory(path / "target")) {
-  //   fs::create_directories(path / "target");
-  // }
+  if (!fs::is_directory(path / "target")) {
+    fs::create_directories(path / "target");
+  }
 
   // if (!fs::is_directory(path / "target" / "debug")) {
   //   fs::create_directories(path / "target" / "debug");
