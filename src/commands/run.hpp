@@ -14,6 +14,6 @@
 
 namespace run {
 
-void run(std::string_view project_name);
+void run();
 
 }  // namespace run

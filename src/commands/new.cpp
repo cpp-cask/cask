@@ -52,7 +52,7 @@ void run(std::string_view project_name) {
 
   cask_file << "[package]\n";
   cask_file << "name = \"" << project_name << "\"\n";
-  cask_file << "standard = \"17\"\n\n";
+  cask_file << "standard = \"20\"\n\n";
   cask_file << "[dependencies]\n";
 
   cask_file.close();

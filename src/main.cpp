@@ -45,7 +45,7 @@ int main(int ac, char* av[]) {
       break;
     }
     case opts::Command::Run: {
-      run::run(av[2]);
+      run::run();
       break;
     }
   }
