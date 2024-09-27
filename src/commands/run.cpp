@@ -81,7 +81,7 @@ void run(std::string_view project_name) {
 
   std::cout << "command:" << command << std::endl;
 
-  assert(std::system(command.c_str()) == 0);
+  assert(std::system(command.c_str()) == 1);
 
   // fs::current_path(path / "target" / "debug" / "build");
 
