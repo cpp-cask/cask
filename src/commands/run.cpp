@@ -48,7 +48,7 @@ void run(std::string_view project_name) {
 
   cmake_file << "cmake_minimum_required(VERSION 3.16)\n\n";
   cmake_file << "# set the project name and version\n";
-  cmake_file << "project(paco VERSION 0.1)\n\n";
+  cmake_file << "project(" << project_name << " VERSION 0.1)\n\n";
 
   cmake_file << "# specify the C++ standard\n";
   cmake_file << "set(CMAKE_CXX_STANDARD 17)\n";
@@ -59,12 +59,12 @@ void run(std::string_view project_name) {
   cmake_file << "file(GLOB_RECURSE SRC_FILES \"../../src/*.cpp\")\n\n";
 
   cmake_file << "#add the executable\n";
-  cmake_file << "add_executable(paco ${SRC_FILES})\n\n";
+  cmake_file << "add_executable(" << project_name << " ${SRC_FILES})\n\n";
 
   cmake_file << "#Add the src folder as an include directory so headers can be "
                 "found\n";
-  cmake_file
-      << "target_include_directories(paco PRIVATE ${CMAKE_SOURCE_DIR}/src)\n\n";
+  cmake_file << "target_include_directories(" << project_name
+             << " PRIVATE ${CMAKE_SOURCE_DIR}/src)\n\n";
 
   cmake_file << "#add dependencies\n";
 
@@ -72,6 +72,9 @@ void run(std::string_view project_name) {
 
   assert(std::system("cmake -Starget/debug -Btarget/debug/build") == 0);
   assert(std::system("cmake --build target/debug/build") == 0);
+
+  std::system(
+      (std::string("target/debug/build/") + std::string(project_name)).c_str());
 }
 
 }  // namespace run
