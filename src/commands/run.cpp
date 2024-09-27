@@ -72,7 +72,7 @@ void run(std::string_view project_name) {
 
   // fs::current_path(path / "target" / "debug" / "build");
 
-  std::cout << "CURRENT_PATH:" << fs::current_path() << std::endl;
+  std::cout << "CURRENT_PATH:" << path << std::endl;
 
   std::string command{"cmake -S"};
   command += (path / "target" / "debug").string();
@@ -89,10 +89,10 @@ void run(std::string_view project_name) {
   
   assert(std::system("ls -la") == 2);
 
-  assert(std::system("cmake --build target/debug/build") == 0);
+  // assert(std::system("cmake --build target/debug/build") == 0);
 
-  std::system(
-      (std::string("target/debug/build/") + std::string(project_name)).c_str());
+  //std::system(
+  //    (std::string("target/debug/build/") + std::string(project_name)).c_str());
 }
 
 }  // namespace run
