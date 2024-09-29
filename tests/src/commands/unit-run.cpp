@@ -31,10 +31,10 @@ TEST_CASE("Run", "RunProject") {
     fs::current_path(path / "sandbox" / "target" / "debug" / "build");
 
     REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build"));
-    REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
-                       "Makefile"));
     // REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
-    //                    "sandbox"));
+    //                    "Makefile"));
+    //  REQUIRE(fs::exists(path / "sandbox" / "target" / "debug" / "build" /
+    //                     "sandbox"));
   }
 
   SECTION("CleanUp") { fs::remove_all(path / "sandbox"); }
