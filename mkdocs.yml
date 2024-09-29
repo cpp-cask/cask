@@ -1,9 +1,10 @@
-site_name: Cask Documentation
+site_name: The Cask Book
 theme:
   name: material
 
   features:
     - content.code.copy
+    - toc.integrate
 
   language: en
 
@@ -20,6 +21,10 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+nav:
+  - Introduction: index.md
+  - 1. Getting Started: getting-started.md
 
 markdown_extensions:
   - pymdownx.highlight:
