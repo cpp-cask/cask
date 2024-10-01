@@ -14,11 +14,9 @@ namespace opts::command {
 
 std::optional<Command> from_str(const std::string& str) {
   static const std::unordered_map<std::string, Command> command_map{
-      {"--help", Command::Help},
-      {"help", Command::Help},
-      {"--list", Command::List},
-      {"new", Command::New},
-      {"run", Command::Run}};
+      {"--help", Command::Help}, {"help", Command::Help},
+      {"--list", Command::List}, {"new", Command::New},
+      {"run", Command::Run},     {"build", Command::Build}};
 
   if (auto it{command_map.find(str)}; it != command_map.end()) {
     return it->second;

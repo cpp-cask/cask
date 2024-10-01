@@ -39,7 +39,7 @@ void run(std::string_view project_name) {
 
   main_file << "#include <iostream>\n\n";
   main_file << "int main() {\n";
-  main_file << "    std::cout << \"Hello World!\";\n";
+  main_file << "    std::cout << \"Hello World!\" << std::endl;";
   main_file << "    return 0;\n";
   main_file << "}\n";
 
@@ -52,6 +52,7 @@ void run(std::string_view project_name) {
 
   cask_file << "[package]\n";
   cask_file << "name = \"" << project_name << "\"\n";
+  cask_file << "version = \"0.1.0\"\n";
   cask_file << "standard = \"20\"\n\n";
   cask_file << "[dependencies]\n";
 

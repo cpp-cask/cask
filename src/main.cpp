@@ -8,6 +8,7 @@
 //
 // This file implements the Cask functionality.
 
+#include <commands/build.hpp>
 #include <commands/help.hpp>
 #include <commands/new.hpp>
 #include <commands/run.hpp>
@@ -42,6 +43,10 @@ int main(int ac, char* av[]) {
       }
 
       new_cmd::run(av[2]);
+      break;
+    }
+    case opts::Command::Build: {
+      build::run();
       break;
     }
     case opts::Command::Run: {
