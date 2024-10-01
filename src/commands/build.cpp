@@ -66,18 +66,31 @@ void run() {
 
     if (auto package = config["package"].as_table()) {
       // Access the 'name' key and ensure it's a string
-      if (auto name = package->get("name")->value<std::string_view>()) {
-        project_name = *name;
-        std::cout << "Project name: " << project_name << std::endl;
+
+      if (auto name_node = package->get("name")) {
+        if (auto name = name_node->value<std::string_view>()) {
+          project_name = *name;
+          std::cout << "Project name: " << project_name << std::endl;
+        } else {
+          std::cerr << "'name' exists but is not a valid string" << std::endl;
+          return;
+        }
       } else {
-        std::cerr << "'name' is not a valid string" << std::endl;
+        std::cerr << "'name' key not found in the package" << std::endl;
+        return;
       }
 
-      if (auto standard = package->get("standard")->value<std::string_view>()) {
-        cxx_version = *standard;
-        std::cout << "standard: " << cxx_version << std::endl;
+      if (auto standard_node = package->get("standard")) {
+        if (auto standard = standard_node->value<std::string_view>()) {
+          cxx_version = *standard;
+          std::cout << "standard: " << cxx_version << std::endl;
+        } else {
+          std::cerr << "'standard' exists but is not a valid string"
+                    << std::endl;
+        }
       } else {
-        std::cerr << "'standard' is not a valid string" << std::endl;
+        std::cerr << "'standard' key not found in the package" << std::endl;
+        return;
       }
     } else {
       std::cerr << "[package] table not found" << std::endl;
