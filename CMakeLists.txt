@@ -1,10 +1,13 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.30)
 
 # set the project name and version
-project(Cask VERSION 0.1)
+project(
+    Cask 
+    VERSION 0.1
+    LANGUAGES CXX C)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Recursively gather all source files from src folder and its subdirectories
