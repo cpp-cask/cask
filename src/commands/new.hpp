@@ -10,10 +10,11 @@
 
 #pragma once
 
+#include <span>
 #include <string_view>
 
 namespace new_cmd {
 
-void run(std::string_view project_name);
+void run(std::span<const std::string_view> args);
 
 }  // namespace new_cmd

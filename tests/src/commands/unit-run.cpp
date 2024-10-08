@@ -5,6 +5,7 @@
 
 // SPDX-License-Identifier: BSL-1.0
 
+#include <array>
 #include <catch2/catch_test_macros.hpp>
 #include <commands/new.hpp>
 #include <commands/run.hpp>
@@ -18,7 +19,7 @@ TEST_CASE("Run", "RunProject") {
   fs::current_path(path);
 
   SECTION("New") {
-    new_cmd::run("sandbox");
+    new_cmd::run(std::array<std::string_view, 1>{"sandbox"});
 
     REQUIRE(fs::exists(path / "sandbox" / "Cask.toml"));
     REQUIRE(fs::exists(path / "sandbox" / "src" / "main.cpp"));

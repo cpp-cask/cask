@@ -12,24 +12,31 @@
 #include <commands/help.hpp>
 #include <commands/new.hpp>
 #include <commands/run.hpp>
+#include <span>
+#include <string_view>
 #include <utils/opts.hpp>
+#include <vector>
+
+namespace {
+std::span<const std::string_view> cmd_args(
+    const std::vector<std::string_view>& args) {
+  return {args.data() + 1, args.size() - 1};
+}
+}  // namespace
 
 int main(int ac, char* av[]) {
-  if (ac < 2) {
-    help::help();
-    return 1;
+  const std::vector<std::string_view> args(av + 1, av + ac);
+
+  if (args.empty()) {
+    help::run();
+    exit(EXIT_FAILURE);
   }
 
-  const auto command{opts::command::from_str(av[1])};
+  const auto command{opts::command::from_str(args.at(0))};
 
-  if (!command.has_value()) {
-    help::unknown_command(av[1]);
-    return 1;
-  }
-
-  switch (command.value()) {
+  switch (command) {
     case opts::Command::Help: {
-      help::help();
+      help::run();
       break;
     }
     case opts::Command::List: {
@@ -37,12 +44,7 @@ int main(int ac, char* av[]) {
       break;
     }
     case opts::Command::New: {
-      if (ac < 3) {
-        help::new_missing_path();
-        return 1;
-      }
-
-      new_cmd::run(av[2]);
+      new_cmd::run(cmd_args(args));
       break;
     }
     case opts::Command::Build: {

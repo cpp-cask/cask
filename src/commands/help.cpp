@@ -8,55 +8,43 @@
 //
 // This file implements the help command.
 
-#include <fmt/color.h>
-
 #include <commands/help.hpp>
+#include <format>
 #include <iostream>
+#include <print>
 
 namespace help {
 
-constexpr fmt::color blue{fmt::color::deep_sky_blue};
-constexpr fmt::color green{fmt::color::light_green};
-constexpr fmt::color red{fmt::color::red};
+void run() {
+  std::print(
+      R"(C++'s package manager
 
-void help() {
-  std::cout << "C++'s package manager\n\n";
+{} {}
 
-  fmt::print(fg(green) | fmt::emphasis::bold, "Usage: ");
-  fmt::print(fg(blue) | fmt::emphasis::bold, "cask [COMMAND]\n\n");
-
-  fmt::print(fg(green) | fmt::emphasis::bold, "Commands:\n");
-  fmt::print(fg(blue) | fmt::emphasis::bold, "    new  ");
-  std::cout << "Create a new cask package" << std::endl;
+{}
+    {}  Compile the current package
+    {}    Create a new cask package
+    {}    Run a binary or example of the local package
+)",
+      fmt::format(fg(green) | fmt::emphasis::bold, "Usage:"),
+      fmt::format(fg(blue) | fmt::emphasis::bold, "cask [COMMAND]"),
+      fmt::format(fg(green) | fmt::emphasis::bold, "Commands:"),
+      fmt::format(fg(blue) | fmt::emphasis::bold, "build"),
+      fmt::format(fg(blue) | fmt::emphasis::bold, "new"),
+      fmt::format(fg(blue) | fmt::emphasis::bold, "run"));
 }
 
 void list() {
-  std::cout << "Installed Commands:\n";
-  std::cout << "    help                 Displays help for a cask subcommand\n";
-  std::cout << "    new                  Create a new cask package at <path>"
-            << std::endl;
+  std::print(R"(Installed Commands:
+  build                Compile a local package and all of its dependencies
+  help                 Displays help for a cask subcommand
+  new                  Create a new cask package at <path>
+  run                  Run a binary or example of the local package)");
 }
 
-void unknown_command(std::string_view command) {
-  fmt::print(fg(red) | fmt::emphasis::bold, "error:");
-  std::cout << " no such command: `" << command << "`\n\n";
-  std::cout << "        Did you mean `help`?\n\n";
-  std::cout << "        View all installed commands with `cask --list`"
-            << std::endl;
-}
-
-void new_missing_path() {
-  fmt::print(fg(red) | fmt::emphasis::bold, "error:");
-  std::cout << " the following required arguments were not provided:\n";
-  fmt::print(fg(blue) | fmt::emphasis::bold, "  <path>\n\n");
-
-  fmt::print(fg(green) | fmt::emphasis::bold, "Usage: ");
-  fmt::print(fg(blue) | fmt::emphasis::bold, "cask new");
-  fmt::print(fg(blue), " <path>\n\n");
-
-  std::cout << "For more information, try '";
-  fmt::print(fg(blue) | fmt::emphasis::bold, "--help");
-  std::cout << "'." << std::endl;
+void fatal_error(const std::string_view msg) {
+  std::print(R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"),
+             msg);
 }
 
 }  // namespace help

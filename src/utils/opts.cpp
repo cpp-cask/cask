@@ -5,15 +5,29 @@
 
 // SPDX-License-Identifier: BSL-1.0
 
-#include <optional>
+#include <commands/help.hpp>
+#include <format>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <utils/opts.hpp>
 
 namespace opts::command {
 
-std::optional<Command> from_str(const std::string& str) {
-  static const std::unordered_map<std::string, Command> command_map{
+namespace {
+void unknown_command(std::string_view command) {
+  help::fatal_error(std::format(R"(no such command: `{}`
+
+       Did you mean `help`
+
+       View all installed commands with `cask --list`
+)",
+                                command));
+}
+}  // namespace
+
+Command from_str(const std::string_view str) {
+  static const std::unordered_map<std::string_view, Command> command_map{
       {"--help", Command::Help}, {"help", Command::Help},
       {"--list", Command::List}, {"new", Command::New},
       {"run", Command::Run},     {"build", Command::Build}};
@@ -21,7 +35,8 @@ std::optional<Command> from_str(const std::string& str) {
   if (auto it{command_map.find(str)}; it != command_map.end()) {
     return it->second;
   } else {
-    return std::nullopt;
+    unknown_command(str);
+    exit(EXIT_FAILURE);
   }
 }
 

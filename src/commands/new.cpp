@@ -10,6 +10,7 @@
 
 #include <fmt/color.h>
 
+#include <commands/help.hpp>
 #include <commands/new.hpp>
 #include <filesystem>
 #include <fstream>
@@ -20,7 +21,32 @@ namespace fs = std::filesystem;
 
 namespace new_cmd {
 
-void run(std::string_view project_name) {
+namespace {
+void error_missing_path() {
+  help::fatal_error(std::format(
+      R"(the following required arguments were not provided:
+{}
+
+{} {} {}
+
+For more information, try '{}'
+)",
+      fmt::format(fg(help::blue) | fmt::emphasis::bold, "  <path>"),
+      fmt::format(fg(help::green) | fmt::emphasis::bold, "Usage:"),
+      fmt::format(fg(help::blue) | fmt::emphasis::bold, "cask new"),
+      fmt::format(fg(help::blue), "<path>"),
+      fmt::format(fg(help::blue) | fmt::emphasis::bold, "--help")));
+}
+}  // namespace
+
+void run(std::span<const std::string_view> args) {
+  if (args.empty()) {
+    error_missing_path();
+    exit(EXIT_FAILURE);
+  }
+
+  const auto project_name = args[0];
+
   if (fs::is_directory(project_name)) {
     fmt::print(fg(fmt::color::red) | fmt::emphasis::bold, "error:");
     std::cout << " destination " << fs::absolute(project_name)
