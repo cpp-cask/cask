@@ -12,12 +12,11 @@
 
 #include <commands/help.hpp>
 #include <iostream>
-#include <print>
 
 namespace help {
 
 void run() {
-  std::print(
+  fmt::print(
       R"(C++'s package manager
 
 {} {}
@@ -36,7 +35,7 @@ void run() {
 }
 
 void list() {
-  std::print(R"(Installed Commands:
+  fmt::print(R"(Installed Commands:
   build                Compile a local package and all of its dependencies
   help                 Displays help for a cask subcommand
   new                  Create a new cask package at <path>
@@ -44,7 +43,7 @@ void list() {
 }
 
 void fatal_error(const std::string_view msg) {
-  std::print(R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"),
+  fmt::print(R"({} {})", fmt::format(fg(red) | fmt::emphasis::bold, "error:"),
              msg);
 }
 
