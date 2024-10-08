@@ -9,6 +9,7 @@
 // This file implements the help command.
 
 #include <fmt/color.h>
+#include <fmt/core.h>
 
 #include <commands/help.hpp>
 #include <commands/new.hpp>
@@ -23,7 +24,7 @@ namespace new_cmd {
 
 namespace {
 void error_missing_path() {
-  help::fatal_error(std::format(
+  help::fatal_error(fmt::format(
       R"(the following required arguments were not provided:
 {}
 

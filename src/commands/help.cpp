@@ -8,8 +8,9 @@
 //
 // This file implements the help command.
 
+#include <fmt/core.h>
+
 #include <commands/help.hpp>
-#include <format>
 #include <iostream>
 #include <print>
 

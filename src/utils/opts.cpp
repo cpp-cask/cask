@@ -5,8 +5,9 @@
 
 // SPDX-License-Identifier: BSL-1.0
 
+#include <fmt/core.h>
+
 #include <commands/help.hpp>
-#include <format>
 #include <string>
 #include <string_view>
 #include <unordered_map>
@@ -16,7 +17,7 @@ namespace opts::command {
 
 namespace {
 void unknown_command(std::string_view command) {
-  help::fatal_error(std::format(R"(no such command: `{}`
+  help::fatal_error(fmt::format(R"(no such command: `{}`
 
        Did you mean `help`
 
