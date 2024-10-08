@@ -4,7 +4,7 @@
             "name": "Linux",
             "defines": [],
             "compilerPath": "/usr/local/bin/gcc",
-            "cppStandard": "c++26",
+            "cppStandard": "c++23",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         }
     ],

@@ -7,7 +7,7 @@ project(
     LANGUAGES CXX C)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Recursively gather all source files from src folder and its subdirectories
