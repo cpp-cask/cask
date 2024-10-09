@@ -24,7 +24,7 @@ const std::span<char*> cmd_args(const std::span<char*> args) {
 }  // namespace
 
 int main(int ac, char* av[]) {
-  const auto args = std::span(av, ac);
+  const auto args = std::span(av + 1, ac - 1);
 
   if (args.empty()) {
     help::run();
