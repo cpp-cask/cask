@@ -19,7 +19,7 @@
 
 namespace {
 const std::span<char*> cmd_args(const std::span<char*> args) {
-  return {args.data() + 1, args.size() - 1};
+  return args.subspan(1, args.size() - 1);
 }
 }  // namespace
 
@@ -31,7 +31,7 @@ int main(int ac, char* av[]) {
     exit(EXIT_FAILURE);
   }
 
-  const auto command{opts::command::from_str(args.at(0))};
+  const auto command{opts::command::from_str(args[0])};
 
   switch (command) {
     case opts::Command::Help: {
