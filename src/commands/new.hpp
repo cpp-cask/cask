@@ -15,6 +15,6 @@
 
 namespace new_cmd {
 
-void run(std::span<const std::string_view> args);
+void run(const std::span<char *> args);
 
 }  // namespace new_cmd

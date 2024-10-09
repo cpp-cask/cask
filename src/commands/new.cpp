@@ -40,7 +40,7 @@ For more information, try '{}'
 }
 }  // namespace
 
-void run(std::span<const std::string_view> args) {
+void run(const std::span<char *> args) {
   if (args.empty()) {
     error_missing_path();
     exit(EXIT_FAILURE);

@@ -18,14 +18,13 @@
 #include <vector>
 
 namespace {
-std::span<const std::string_view> cmd_args(
-    const std::vector<std::string_view>& args) {
+const std::span<char*> cmd_args(const std::span<char*> args) {
   return {args.data() + 1, args.size() - 1};
 }
 }  // namespace
 
 int main(int ac, char* av[]) {
-  const std::vector<std::string_view> args(av + 1, av + ac);
+  const auto args = std::span(av, ac);
 
   if (args.empty()) {
     help::run();
