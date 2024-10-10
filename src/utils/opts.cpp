@@ -19,8 +19,6 @@ namespace {
 void unknown_command(std::string_view command) {
   help::fatal_error(fmt::format(R"(no such command: `{}`
 
-       Did you mean `help`
-
        View all installed commands with `cask --list`
 )",
                                 command));

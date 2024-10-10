@@ -12,6 +12,7 @@
 
 #include <fmt/color.h>
 
+#include <span>
 #include <string_view>
 
 namespace help {
@@ -21,6 +22,7 @@ constexpr fmt::color green{fmt::color::light_green};
 constexpr fmt::color red{fmt::color::red};
 
 void run();
+void run(const std::span<char *> args);
 void list();
 void fatal_error(const std::string_view msg);
 

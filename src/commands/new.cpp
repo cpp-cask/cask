@@ -87,7 +87,9 @@ void run(const std::span<char *> args) {
 
   fmt::print(fg(fmt::color::light_green) | fmt::emphasis::bold,
              "     Created ");
-  std::cout << "binary (application) `" << project_name << "` package"
+  std::cout << "binary (application) `" << project_name << "` package\n";
+  fmt::print(fg(fmt::color::deep_sky_blue) | fmt::emphasis::bold, "note: ");
+  std::cout << "note: see more `Cask.toml` keys and their definitions at TBD"
             << std::endl;
 }
 

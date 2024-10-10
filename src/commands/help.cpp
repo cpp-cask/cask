@@ -12,6 +12,7 @@
 
 #include <commands/help.hpp>
 #include <iostream>
+#include <utils/opts.hpp>
 
 namespace help {
 
@@ -25,13 +26,58 @@ void run() {
     {}  Compile the current package
     {}    Create a new cask package
     {}    Run a binary or example of the local package
+
+See '{} {}' for more information on a specific command.
 )",
       fmt::format(fg(green) | fmt::emphasis::bold, "Usage:"),
       fmt::format(fg(blue) | fmt::emphasis::bold, "cask [COMMAND]"),
       fmt::format(fg(green) | fmt::emphasis::bold, "Commands:"),
       fmt::format(fg(blue) | fmt::emphasis::bold, "build"),
       fmt::format(fg(blue) | fmt::emphasis::bold, "new"),
-      fmt::format(fg(blue) | fmt::emphasis::bold, "run"));
+      fmt::format(fg(blue) | fmt::emphasis::bold, "run"),
+      fmt::format(fg(blue) | fmt::emphasis::bold, "cask help"),
+      fmt::format(fg(blue), "<command>"));
+}
+
+void run(const std::span<char *> args) {
+  if (args.empty()) {
+    run();
+  }
+
+  const auto command{opts::command::from_str(args[0])};
+
+  switch (command) {
+    case opts::Command::Help: {
+      fmt::print(R"(HELP MAN PAGE)");
+      break;
+    }
+    case opts::Command::List: {
+      fmt::print(R"(List MAN PAGE)");
+      help::list();
+      break;
+    }
+    case opts::Command::New: {
+      fmt::print(R"(NAME
+       cask-new — Create a new Cask package
+SYNOPSIS
+       cask new path
+
+DESCRIPTION
+       This command will create a new Cask package in the given directory. This includes a simple template with a Cask.toml manifest, sample source file, and a VCS ignore file. If the directory is not already in a VCS repository, then a new repository is created (see --vcs below).
+
+       See cask-init(1) for a similar command which will create a new manifest in an existing directory.
+)");
+      break;
+    }
+    case opts::Command::Build: {
+      fmt::print(R"(Build MAN PAGE)");
+      break;
+    }
+    case opts::Command::Run: {
+      fmt::print(R"(Fmt MAN PAGE)");
+      break;
+    }
+  }
 }
 
 void list() {

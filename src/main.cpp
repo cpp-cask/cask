@@ -35,7 +35,7 @@ int main(int ac, char* av[]) {
 
   switch (command) {
     case opts::Command::Help: {
-      help::run();
+      help::run(cmd_args(args));
       break;
     }
     case opts::Command::List: {
