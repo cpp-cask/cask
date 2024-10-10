@@ -6,19 +6,15 @@
 // SPDX-License-Identifier: BSL-1.0
 
 //
-// This file implements a lightweight options parser.
+// This file implements the add command.
 
 #pragma once
 
-#include <optional>
-#include <string>
+#include <span>
+#include <string_view>
 
-namespace opts {
+namespace add {
 
-enum class Command { Add, Build, Help, List, New, Run };
+void run(const std::span<char *> args);
 
-namespace command {
-Command from_str(const std::string_view str);
-}
-
-}  // namespace opts
+}  // namespace add

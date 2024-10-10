@@ -8,6 +8,7 @@
 //
 // This file implements the Cask functionality.
 
+#include <commands/add.hpp>
 #include <commands/build.hpp>
 #include <commands/help.hpp>
 #include <commands/new.hpp>
@@ -34,6 +35,10 @@ int main(int ac, char* av[]) {
   const auto command{opts::command::from_str(args[0])};
 
   switch (command) {
+    case opts::Command::Add: {
+      add::run(cmd_args(args));
+      break;
+    }
     case opts::Command::Help: {
       help::run(cmd_args(args));
       break;

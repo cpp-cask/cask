@@ -27,9 +27,10 @@ void unknown_command(std::string_view command) {
 
 Command from_str(const std::string_view str) {
   static const std::unordered_map<std::string_view, Command> command_map{
-      {"--help", Command::Help}, {"help", Command::Help},
-      {"--list", Command::List}, {"new", Command::New},
-      {"run", Command::Run},     {"build", Command::Build}};
+      {"add", Command::Add},    {"--help", Command::Help},
+      {"help", Command::Help},  {"--list", Command::List},
+      {"new", Command::New},    {"run", Command::Run},
+      {"build", Command::Build}};
 
   if (auto it{command_map.find(str)}; it != command_map.end()) {
     return it->second;
