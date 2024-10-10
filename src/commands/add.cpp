@@ -77,31 +77,32 @@ void run(const std::span<char *> args) {
     }
 
     auto config = toml::parse_file((path / "Cask.toml").string().c_str());
+    auto dependencies = config["dependencies"].as_table();
 
-    if (auto dependencies = config["dependencies"].as_table()) {
-      // // Access the 'name' key and ensure it's a string
-
-      if (auto name_node = dependencies->get(library)) {
-      } else {
-        std::ofstream cask_file(path / "Cask.toml", std::ios::app);
-
-        cask_file << fmt::format("{} = \"{}\"", library,
-                                 it->second.last_version);
-
-        cask_file.close();
-      }
-
-      fmt::print(
-          R"(      {} {} v{} to dependencies
-)",
-          fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"), library,
-          it->second.last_version);
-
-    } else {
-      std::cerr << "[dependencies] table not found" << std::endl;
-      exit(EXIT_FAILURE);
+    if (!dependencies) {
+      config.insert("dependencies", toml::table{});
+      dependencies = config["dependencies"].as_table();
     }
 
+    if (auto name_node = dependencies->get(library)) {
+    } else {
+      dependencies->insert(library, it->second.last_version);
+
+      std::ofstream cask_file(path / "Cask.toml");
+
+      cask_file << "[package]\n";
+      cask_file << config["package"];
+      cask_file << "\n\n[dependencies]\n";
+      cask_file << config["dependencies"];
+
+      cask_file.close();
+    }
+
+    fmt::print(
+        R"(      {} {} v{} to dependencies
+)",
+        fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"), library,
+        it->second.last_version);
   } else {
     error_unknown_command(library);
   }
