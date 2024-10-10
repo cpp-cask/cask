@@ -17,6 +17,7 @@
 #include <fstream>
 #include <iostream>
 #include <string_view>
+#include <toml++/toml.hpp>
 #include <unordered_map>
 
 namespace fs = std::filesystem;
@@ -75,17 +76,31 @@ void run(const std::span<char *> args) {
       return;
     }
 
-    std::ofstream cask_file(path / "Cask.toml", std::ios::app);
+    auto config = toml::parse_file((path / "Cask.toml").string().c_str());
 
-    cask_file << fmt::format("{} = \"{}\"", library, it->second.last_version);
+    if (auto dependencies = config["dependencies"].as_table()) {
+      // // Access the 'name' key and ensure it's a string
 
-    cask_file.close();
+      if (auto name_node = dependencies->get(library)) {
+      } else {
+        std::ofstream cask_file(path / "Cask.toml", std::ios::app);
 
-    fmt::print(
-        R"(      {} {} v{}
+        cask_file << fmt::format("{} = \"{}\"", library,
+                                 it->second.last_version);
+
+        cask_file.close();
+      }
+
+      fmt::print(
+          R"(      {} {} v{} to dependencies
 )",
-        fmt::format(fg(help::blue) | fmt::emphasis::bold, "Adding"), library,
-        it->second.last_version);
+          fmt::format(fg(help::green) | fmt::emphasis::bold, "Adding"), library,
+          it->second.last_version);
+
+    } else {
+      std::cerr << "[dependencies] table not found" << std::endl;
+      exit(EXIT_FAILURE);
+    }
 
   } else {
     error_unknown_command(library);
