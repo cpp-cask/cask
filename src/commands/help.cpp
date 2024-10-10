@@ -42,11 +42,16 @@ See '{} {}' for more information on a specific command.
 void run(const std::span<char *> args) {
   if (args.empty()) {
     run();
+    return;
   }
 
   const auto command{opts::command::from_str(args[0])};
 
   switch (command) {
+    case opts::Command::Add: {
+      fmt::print(R"(Add MAN PAGE)");
+      break;
+    }
     case opts::Command::Help: {
       fmt::print(R"(HELP MAN PAGE)");
       break;
